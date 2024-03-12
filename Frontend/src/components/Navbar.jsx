@@ -1,5 +1,13 @@
-import dp from "../assets/dp.png";
-const Navbar = () => {
+import { useState } from "react";
+
+const Navbar = ({socket}) => {
+  const [clientsTotal, setClientsTotal] = useState(0)
+  
+  
+  socket.on("clients-total",(data)=>{
+    setClientsTotal(data);
+  })
+
   return (
     <header className="flex flex-row items-center justify-between bg-[#3F02CA] px-4 py-6 rounded-b-[2rem] w-full">
       <div className="flex flex-row space-x-2 justify-center items-center">
@@ -18,13 +26,13 @@ const Navbar = () => {
           />
         </svg>
         <img
-          src={dp}
+          src=""
           className="h-12 w-12 bg-black rounded-full overflow-hidden"
           fill
         />
         <div className="flex flex-col space-y-0">
-          <p className="text-white text-xl">Suryatej Ponnapali</p>
-          <p className="font-extralight mt-0 text-gray-400">online</p>
+          <p className="text-white text-xl">Total Clients:</p>
+          <p className="font-extralight mt-0 text-gray-400">{clientsTotal}</p>
         </div>
       </div>
       <div className="flex flex-row items-center justify-center space-x-4">

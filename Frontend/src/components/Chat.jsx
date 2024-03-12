@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Chat = () => {
+const Chat = ({socket}) => {
   return (
     <section className="flex flex-col px-2 space-y-4 mt-2">
       <div className="flex flex-row justify-between items-center">
