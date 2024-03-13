@@ -30,6 +30,12 @@ function onConnected(socket){
         socketsConnected.delete(socket.id)
         io.emit('clients-total',socketsConnected.size)
     })
+
+    socket.on('message',(data)=>{
+        console.log(data)
+        io.emit('chat-message',data);
+    })
+
 }
 
 server.listen(3001,()=>{

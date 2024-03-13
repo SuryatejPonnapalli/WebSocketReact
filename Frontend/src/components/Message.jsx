@@ -1,10 +1,21 @@
 import { useState } from 'react'
 import io from 'socket.io-client'
+import Chat from './Chat'
 
-export default function Message() {
+export default function Message({socket,data}) {
+  const [chat,setChat] = useState("")
 
-  const sendMessage = ({socket}) =>{
-    socket.emit()
+  function chatSet(e){
+    setChat(e.target.value)
+  }
+  const sendMessage = () =>{
+      const data = {
+      // name: chat,
+      message: chat,
+      dateTime: new Date()
+      }
+      socket.emit("message",data)
+      setChat("")
   }
 
   return (
@@ -26,6 +37,8 @@ export default function Message() {
           type="text"
           placeholder="Type something here...."
           className="bg-gray-100 border-none h-10 text-md outline-none"
+          value = {chat}
+          onChange={chatSet}
         />
       </div>
       <button onClick={sendMessage}>

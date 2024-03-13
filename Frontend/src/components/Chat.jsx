@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 const Chat = ({socket}) => {
-  return (
+  
+
+  
+    return (
     <section className="flex flex-col px-2 space-y-4 mt-2">
       <div className="flex flex-row justify-between items-center">
         <p className=" italic font-extralight text-xs text-gray-500">
