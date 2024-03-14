@@ -1,22 +1,23 @@
-import { useState } from 'react'
-import io from 'socket.io-client'
-import Chat from './Chat'
+import { useState } from "react";
+import io from "socket.io-client";
+import Chat from "./Chat";
 
-export default function Message({socket,data}) {
-  const [chat,setChat] = useState("")
+export default function Message({ socket, info }) {
+  const [chat, setChat] = useState("");
 
-  function chatSet(e){
-    setChat(e.target.value)
+  function chatSet(e) {
+    setChat(e.target.value);
   }
-  const sendMessage = () =>{
-      const data = {
-      // name: chat,
+  console.log(info);
+  const sendMessage = () => {
+    const data = {
+      name: info,
       message: chat,
-      dateTime: new Date()
-      }
-      socket.emit("message",data)
-      setChat("")
-  }
+      dateTime: new Date(),
+    };
+    socket.emit("message", data);
+    setChat("");
+  };
 
   return (
     <section className="flex flex-row items-center rounded-3xl bg-gray-100 mx-2 py-3 px-4 justify-between">
@@ -36,8 +37,8 @@ export default function Message({socket,data}) {
         <input
           type="text"
           placeholder="Type something here...."
-          className="bg-gray-100 border-none h-10 text-md outline-none"
-          value = {chat}
+          className="bg-gray-100 border-none h-10 text-md outline-none w-full"
+          value={chat}
           onChange={chatSet}
         />
       </div>
