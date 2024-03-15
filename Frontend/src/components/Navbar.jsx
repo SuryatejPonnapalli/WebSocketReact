@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-const Navbar = ({socket}) => {
-  const [clientsTotal, setClientsTotal] = useState(0)
-  
-  
-  socket.on("clients-total",(data)=>{
+const Navbar = ({ socket, info }) => {
+  const [clientsTotal, setClientsTotal] = useState(0);
+
+  socket.on("clients-total", (data) => {
     setClientsTotal(data);
-  })
+  });
 
   return (
     <header className="flex flex-row items-center justify-between bg-[#3F02CA] px-4 py-6 rounded-b-[2rem] w-full">
@@ -31,8 +30,10 @@ const Navbar = ({socket}) => {
           fill
         />
         <div className="flex flex-col space-y-0">
-          <p className="text-white text-xl">Total Clients:</p>
-          <p className="font-extralight mt-0 text-gray-400">{clientsTotal}</p>
+          <p className="text-white text-xl">Group chat</p>
+          <p className="font-extralight mt-0 text-gray-400">
+            Online: {clientsTotal}
+          </p>
         </div>
       </div>
       <div className="flex flex-row items-center justify-center space-x-4">

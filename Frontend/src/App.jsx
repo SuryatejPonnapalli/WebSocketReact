@@ -10,6 +10,8 @@ function App() {
   const [data, setData] = useState([]);
   const [info, setInfo] = useState("");
 
+  const [startChat, setStartChat] = useState(false);
+
   // socket.on("chat-message", (data) => {
   //   setData((prev) => [...prev, data]);
   // });
@@ -34,17 +36,33 @@ function App() {
 
   function setId(e) {
     setInfo(e);
+    console.log("this is in setid");
+    showChat();
+  }
+
+  function showChat() {
+    console.log("this function is called");
+    setStartChat(true);
+    console.log(startChat);
   }
 
   return (
     <body className="flex flex-col bg-[#e6e5e5] justify-between h-screen">
-      <Login setId={setId} />
-      <div className="flex flex-col space-x-2">
-        <Navbar socket={socket} />
-        <Chat socket={socket} data={data} messages={data} info={info} />
+      <div className={startChat ? "hidden" : "block"}>
+        <Login setId={setId} />
       </div>
-      <div className="mb-4">
-        <Message socket={socket} data={data} info={info} />
+      <div
+        className={
+          startChat ? "flex flex-col justify-between h-screen" : "hidden"
+        }
+      >
+        <div className="flex flex-col space-x-2">
+          <Navbar socket={socket} info={info} />
+          <Chat socket={socket} data={data} messages={data} info={info} />
+        </div>
+        <div className="mb-4">
+          <Message socket={socket} data={data} info={info} />
+        </div>
       </div>
     </body>
   );

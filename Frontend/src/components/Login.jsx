@@ -18,7 +18,7 @@ const Login = (props) => {
       <button
         type="submit"
         className=" bg-cyan-700 p-2 rounded-md"
-        onClick={props.setId(info)}
+        onClick={() => props.setId(info)}
       >
         Submit
       </button>
