@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import moment from "moment";
 const Chat = (props) => {
   return (
     <section className="flex flex-col px-2 space-y-4 mt-2">
@@ -10,7 +10,7 @@ const Chat = (props) => {
           }`}
         >
           <p className=" italic font-extralight text-xs text-gray-500">
-            {dateTime}
+            {moment(dateTime).calendar()}
           </p>
 
           <div
